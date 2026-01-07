@@ -18,21 +18,91 @@
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+  <meta name="description" content="Arcade Lunar - Gaming Social Platform">
+
+  <!-- Google Sign-In Client ID -->
+  <meta name="google-signin-client_id" content="703109987430-04dmge1erumf45jo4qrdqbhqqs9e0tji.apps.googleusercontent.com">
 
   <!-- iOS meta tags & icons -->
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="gaming_social_app">
+  <meta name="apple-mobile-web-app-title" content="Arcade Lunar">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
 
-  <title>gaming_social_app</title>
+  <title>Arcade Lunar</title>
   <link rel="manifest" href="manifest.json">
+
+  <!-- Facebook SDK for JavaScript - Load SYNCHRONOUSLY before Flutter -->
+  <script>
+    // Facebook SDK Ready Promise
+    window.fbReady = new Promise(function(resolve) {
+      window.fbAsyncInit = function() {
+        FB.init({
+          appId      : '1182104100636655',
+          cookie     : true,
+          xfbml      : true,
+          version    : 'v18.0'
+        });
+        console.log('✅ Facebook SDK initialized');
+        resolve(true);
+      };
+    });
+  </script>
+  <!-- Load synchronously to ensure it's ready before Flutter -->
+  <script src="https://connect.facebook.net/en_US/sdk.js"></script>
 </head>
 <body>
-  <script src="flutter_bootstrap.js" async></script>
+  <!-- This script installs service_worker.js to provide PWA functionality to
+       application. For more information, see:
+       https://developers.google.com/web/fundamentals/primers/service-workers -->
+  <script>
+    var serviceWorkerVersion = null;
+    var scriptLoaded = false;
+    function loadMainDartJs() {
+      if (scriptLoaded) {
+        return;
+      }
+      scriptLoaded = true;
+      var scriptTag = document.createElement('script');
+      scriptTag.src = 'flutter_bootstrap.js';
+      scriptTag.type = 'application/javascript';
+      document.body.appendChild(scriptTag);
+    }
+
+    if ('serviceWorker' in navigator) {
+      // Service workers are supported. Use them.
+      window.addEventListener('load', function () {
+        // Wait for registration to finish before dropping the <script> tag.
+        // Otherwise, the currentVersion != latestVersion logic may not work.
+        navigator.serviceWorker.register('flutter_service_worker.js?v=' + serviceWorkerVersion).then(function(reg) {
+          function waitForActivation(reg) {
+            if (reg.active) {
+              return Promise.resolve(reg.active);
+            }
+            return new Promise(function(resolve) {
+              reg.addEventListener('statechange', function() {
+                if (reg.active) {
+                  resolve(reg.active);
+                }
+              });
+            });
+          }
+          return waitForActivation(reg);
+        }).then(function() {
+          loadMainDartJs();
+        });
+        // If service worker doesn't load in 3 seconds, load main dart.js anyway.
+        setTimeout(function() {
+          loadMainDartJs();
+        }, 3000);
+      });
+    } else {
+      // Service workers are not supported. Just load the app.
+      loadMainDartJs();
+    }
+  </script>
 </body>
 </html>

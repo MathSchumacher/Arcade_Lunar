@@ -14,7 +14,6 @@ class AppTheme {
         primary: AppColors.primary,
         secondary: AppColors.secondary,
         surface: AppColors.surface,
-        background: AppColors.background,
         error: AppColors.error,
       ),
 
@@ -68,6 +67,30 @@ class AppTheme {
         ),
       ),
 
+      // Elevated button with purple gradient and animation
+      elevatedButtonTheme: ElevatedButtonThemeData(
+        style: ElevatedButton.styleFrom(
+          backgroundColor: AppColors.primary,
+          foregroundColor: Colors.white,
+          elevation: 0,
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12),
+          ),
+        ).copyWith(
+          overlayColor: WidgetStateProperty.all(AppColors.secondary.withOpacity(0.2)),
+        ),
+      ),
+
+      // Icon button theme
+      iconButtonTheme: IconButtonThemeData(
+        style: IconButton.styleFrom(
+          foregroundColor: AppColors.textSecondary,
+        ).copyWith(
+          overlayColor: WidgetStateProperty.all(AppColors.primary.withOpacity(0.15)),
+        ),
+      ),
+
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
         backgroundColor: AppColors.surface,
         selectedItemColor: AppColors.primary,
@@ -76,6 +99,10 @@ class AppTheme {
         showSelectedLabels: false,
         showUnselectedLabels: false,
       ),
+
+      // Splash and highlight colors for ripple effects
+      splashColor: AppColors.primary.withOpacity(0.15),
+      highlightColor: AppColors.primary.withOpacity(0.1),
     );
   }
 }

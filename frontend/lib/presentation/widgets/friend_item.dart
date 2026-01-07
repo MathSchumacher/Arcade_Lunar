@@ -82,19 +82,24 @@ class FriendItem extends StatelessWidget {
                 ),
               if (friend.status.contains('Stream'))
                 Positioned(
-                  top: 50,
-                  left: 10,
-                  right: 10,
+                  bottom: -2,
+                  left: 5,
+                  right: 5,
                   child: Container(
-                    padding: const EdgeInsets.symmetric(vertical: 2),
+                    padding: const EdgeInsets.symmetric(vertical: 2, horizontal: 4),
                     decoration: BoxDecoration(
                       color: AppColors.error,
                       borderRadius: BorderRadius.circular(4),
+                      border: Border.all(color: AppColors.background, width: 1),
                     ),
                     child: const Text(
                       'LIVE',
                       textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 8, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 8, 
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),

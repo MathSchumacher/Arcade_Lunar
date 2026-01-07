@@ -1,5 +1,5 @@
 name: gaming_social_app
-description: "A premium gaming social network application."
+description: "Arcade Lunar - A premium gaming social network application."
 publish_to: 'none'
 version: 1.0.0+1
 
@@ -15,11 +15,26 @@ dependencies:
   cached_network_image: ^3.3.1
   intl: ^0.19.0
   timeago: ^3.6.1
+  shared_preferences: ^2.2.2
+  http: ^1.1.2
+  # share_plus: ^7.2.1
+  country_code_picker: ^3.0.0
+  image_picker: ^1.0.7
+  # google_sign_in: ^6.2.1
+  flutter_facebook_auth: ^7.0.1
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^3.0.1
+  flutter_launcher_icons: ^0.14.3
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/logo.png"
+  adaptive_icon_background: "#0D0D0F"
+  adaptive_icon_foreground: "assets/images/logo.png"
 
 flutter:
   uses-material-design: true

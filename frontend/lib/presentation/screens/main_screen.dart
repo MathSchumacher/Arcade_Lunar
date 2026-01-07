@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import '../navigation/bottom_nav_bar.dart';
 import 'home_screen.dart';
+import 'live/live_screen.dart';
+import 'games/games_screen.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({super.key});
@@ -14,9 +16,9 @@ class _MainScreenState extends State<MainScreen> {
 
   final List<Widget> _screens = [
     const HomeScreen(),
-    const Center(child: Text('Live Stream Coming Soon')), // Placeholder
+    const LiveScreen(), // Live streaming screen
     const Center(child: Text('Create Post')), // Placeholder
-    const Center(child: Text('Games Coming Soon')), // Placeholder
+    const GamesScreen(), // Games/Categories page
     const Center(child: Text('Chat Coming Soon')), // Placeholder
   ];
 
